@@ -99,29 +99,32 @@ public class SocialMediaController {
     } 
     //Message addedaccount = messageService.getMessageViaID(message.message_id);
     
-    private void getMessageID(Context ctx) throws JsonProcessingException{
-        ObjectMapper mapper = new ObjectMapper();
-        Message message = mapper.readValue(ctx.body(),  Message.class);
-        Message tester = messageService.getMessageViaID(message.message_id);
-       
+    private void getMessageID(Context ctx) {
+        int yoMama = Integer.parseInt(ctx.pathParam("message_id"));
+        Message tester = messageService.getMessageViaID(yoMama);
+        System.out.println(tester + "k");
+            if(tester != null){
             ctx.json(tester);
+            }
             ctx.status(200);
        
     } 
     private void deleteMessageID(Context ctx) throws JsonProcessingException{
-        ObjectMapper mapper = new ObjectMapper();
-        Message message = mapper.readValue(ctx.body(),  Message.class);
-        Message tester = messageService.deleteMessage(message.message_id);
-       
+        int intId = Integer.parseInt(ctx.pathParam("message_id"));
+        Message tester = messageService.deleteMessage(intId);
+        System.out.println(tester);
+        if(tester != null){
             ctx.json(tester);
+            }            
             ctx.status(200);
        
     } 
 
     private void patchMessageID(Context ctx) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        Message message = mapper.readValue(ctx.body(),  Message.class);
-        Message tester = messageService.updateMessage(message.message_text, message.message_id);
+        Message message = mapper.readValue(ctx.body(),Message.class);
+        int id  = Integer.parseInt(ctx.pathParam("message_id"));
+        Message tester = messageService.updateMessage(message.message_text,id);
         System.out.println(tester);
         if(tester!=null){
             ctx.json(tester);
@@ -138,9 +141,10 @@ public class SocialMediaController {
         ObjectMapper mapper = new ObjectMapper();
         Message message = mapper.readValue(ctx.body(),  Message.class);
         List<Message> tester = messageService.getUseraMessage(message.posted_by);
+        if(tester != null){
             ctx.json(tester);
+            }            
             ctx.status(200);
-        
     } 
 
 

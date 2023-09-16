@@ -45,8 +45,8 @@ public class MessageService {
   }
 
   public Message updateMessage(String mess, int id){
-    if(!mess.isEmpty() && mess.length() < 255 ){
-     messageDAO.updateMessage(mess, id);
+    boolean plsgod = messageDAO.getMessageByID(id)!=null;
+    if(!mess.isEmpty() && mess.length() < 255 &&  messageDAO.updateMessage(mess, id)  && plsgod ){
       return messageDAO.getMessageByID(id);
     }else{
       return null;
