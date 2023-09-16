@@ -132,7 +132,7 @@ public class MessagesDAO {
         */
         try {
             //Write SQL logic here
-            String sql = "delete message set message_id=?;";
+            String sql = "delete from message where message_id=?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             //write PreparedStatement setString and setInt methods here.

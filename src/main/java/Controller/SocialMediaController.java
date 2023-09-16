@@ -109,7 +109,7 @@ public class SocialMediaController {
             ctx.status(200);
        
     } 
-    private void deleteMessageID(Context ctx) throws JsonProcessingException{
+    private void deleteMessageID(Context ctx) {
         int intId = Integer.parseInt(ctx.pathParam("message_id"));
         Message tester = messageService.deleteMessage(intId);
         System.out.println(tester);

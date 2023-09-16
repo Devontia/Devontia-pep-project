@@ -33,8 +33,9 @@ public class MessageService {
 
     }
   public Message deleteMessage(int id){
+    Message mess = messageDAO.getMessageByID(id);
     if( messageDAO.deleteMessage(id)){
-        return messageDAO.getMessageByID(id);
+        return mess;
     }else{
         return null;
     }
