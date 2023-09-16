@@ -178,13 +178,13 @@ public class MessagesDAO {
         List<Message> message = new ArrayList<>();
         try {
             //Write SQL logic here
-            String sql = "select * from message where posted_by = ?";
+            String sql = "select * from Message where posted_by = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,postby);
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()){
                 Message mess = new Message(rs.getInt("message_id"),
-                postby,
+                rs.getInt("posted_by"),
                 rs.getString("message_text"),
                 rs.getLong("time_posted_epoch"));
                 message.add(mess);
