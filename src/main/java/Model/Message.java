@@ -47,13 +47,13 @@ public class Message {
      * fields is needed.
      * @param message_id
      * @param posted_by
-     * @param i
+     * @param message_text
      * @param time_posted_epoch
      */
-    public Message(int message_id, int posted_by, int i, long time_posted_epoch) {
+    public Message(int message_id, int posted_by, String message_text, long time_posted_epoch) {
         this.message_id = message_id;
         this.posted_by = posted_by;
-        this.message_text = i;
+        this.message_text = message_text;
         this.time_posted_epoch = time_posted_epoch;
     }
     /**

@@ -1,5 +1,5 @@
 package Service;
-import DAO.MessagesDAO;;
+import DAO.MessagesDAO;
 
 import Util.ConnectionUtil;
 import Model.Message;
@@ -12,21 +12,50 @@ import java.util.List;
 
 
 public class MessageService {
-    private MessagesDAO messageDAO;
+    public MessagesDAO messageDAO;
 
-
+   
+    
 
     public MessageService(){
         messageDAO = new MessagesDAO();
     }
 
+    public MessageService(MessagesDAO messageDAO){
+        this.messageDAO = messageDAO;
+    }
     public List<Message> getAllMessages(){
         return messageDAO.getAllMessages();
     }
 
     public Message addMessage(Message message){
         return messageDAO.insertMessage(message);
-    }
 
+    }
+  public Message deleteMessage(int id){
+    if( messageDAO.deleteMessage(id)){
+        return messageDAO.getMessageByID(id);
+    }else{
+        return null;
+    }
+  }
+
+  public Message getMessageViaID(int ID){
+    return messageDAO.getMessageByID(ID);
+  }
+
+  public Message updateMessage(String mess, int id){
+    if(!mess.isEmpty() && mess.length() < 255 ){
+     messageDAO.updateMessage(mess, id);
+      return messageDAO.getMessageByID(id);
+    }else{
+      return null;
+    }
+    
+  }
+
+  public List<Message> getUseraMessage(int postby){
+    return messageDAO.getUseraMessage(postby);
+  }
     
 }

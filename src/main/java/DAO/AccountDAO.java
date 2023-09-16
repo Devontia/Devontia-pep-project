@@ -59,12 +59,14 @@ public class AccountDAO {
             
             preparedStatement.executeUpdate();
             ResultSet pkeyResultSet = preparedStatement.getGeneratedKeys();
-            if(account.getPassword().length() >= 4 && account.getUsername() != "" ){
+           
             if(pkeyResultSet.next()){
+                if(account.getPassword().length() >= 4 && account.getUsername() != "" ){
                 int generated_account_id = (int) pkeyResultSet.getLong(1);
                 return new Account(generated_account_id, account.getUsername(),account.getPassword());
+                }
             }
-        }
+        
 
         }catch(SQLException e){
             System.out.println(e.getMessage());
